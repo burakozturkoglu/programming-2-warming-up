@@ -1,0 +1,25 @@
+{
+    "tests": [
+      {
+        "name": "01 StringBasicsTest",
+        "run": "./gradlew test --tests StringBasicsTest --console=plain",
+        "points": 30
+      },
+      {
+        "name": "02 CollectionsBasicsTest",
+        "run": "./gradlew test --tests CollectionsBasicsTest --console=plain",
+        "points": 30
+      },
+      {
+        "name": "03 PersonTest",
+        "run": "./gradlew test --tests PersonTest --console=plain",
+        "points": 20
+      },
+      {
+        "name": "04 ObjectExerciseTest",
+        "run": "./gradlew test --tests ObjectExerciseTest --console=plain",
+        "points": 20
+      }
+    ]
+  }
+  
