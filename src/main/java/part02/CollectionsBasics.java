@@ -1,5 +1,7 @@
 package part02;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,6 +14,38 @@ import java.util.List;
  */
 public class CollectionsBasics {
 
+	
+	public static void main(String[] args) {
+        CollectionsBasics demo = new CollectionsBasics();
+
+        // 1. Test maximum
+        List<Integer> nums = Arrays.asList(5, 12, -3, 42, 8);
+        System.out.println("Maximum: " + demo.maximum(nums)); 
+
+        // 2. Test sum
+        System.out.println("Sum: " + demo.sum(nums)); 
+
+        // 3. Test multiply
+        List<Integer> multiplied = demo.multiply(Arrays.asList(-1, 0, 100), 2);
+        System.out.println("Multiply: " + multiplied); 
+
+        // 4. Test range
+        List<Integer> rangeList = demo.range(3, 8);
+        System.out.println("Range (3 to 8): " + rangeList); 
+
+        // 5. Test concatenateStrings
+        List<String> words = Arrays.asList("foo", "bar", "baz");
+        System.out.println("Concatenate: " + demo.concatenateStrings(words)); 
+
+        // 6. Test getLengths
+        List<String> languages = Arrays.asList("Java", "Python", "TypeScript");
+        System.out.println("Lengths: " + demo.getLengths(languages)); 
+
+        // 7. Test indicesOf (overlapping)
+        List<Integer> indices = demo.indicesOf("banana", "ana");
+        System.out.println("Indices of 'ana' in 'banana': " + indices);
+    }
+	
     /**
      * Finds the maximum value in a list of integers. You can assume that the list
      * is not empty.
@@ -20,7 +54,15 @@ public class CollectionsBasics {
      * @return The maximum value in the list.
      */
     public int maximum(List<Integer> numbers) {
-        return 0; // TODO: implement this method
+    	int max = numbers.get(0);
+
+        for (int number : numbers) {
+            if (number > max) {
+                max = number;
+            }
+        }
+
+        return max;
     }
 
     /**
@@ -30,7 +72,16 @@ public class CollectionsBasics {
      * @return The sum of all integers in the list.
      */
     public int sum(List<Integer> numbers) {
-        return 0; // TODO: implement this method
+    	if (numbers == null) {
+            return 0;
+        }
+
+        int total = 0;
+        for (int number : numbers) {
+            total += number;
+        }
+
+        return total;
     }
 
     /**
@@ -47,7 +98,16 @@ public class CollectionsBasics {
      * @return A new list, where the numbers are multiplied by the given factor.
      */
     public List<Integer> multiply(List<Integer> numbers, int factor) {
-        return null; // TODO: implement this method
+    	if (numbers == null) {
+            return new ArrayList<>();
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (int number : numbers) {
+            result.add(number * factor);
+        }
+
+        return result;
     }
 
     /**
@@ -61,7 +121,13 @@ public class CollectionsBasics {
      * @return A list containing the numbers between the start and end values.
      */
     public List<Integer> range(int start, int end) {
-        return null; // TODO: implement this method
+    	List<Integer> result = new ArrayList<>();
+
+        for (int i = start; i < end; i++) {
+            result.add(i);
+        }
+
+        return result;
     }
 
     /**
@@ -73,7 +139,11 @@ public class CollectionsBasics {
      * @return The concatenated string.
      */
     public String concatenateStrings(List<String> strings) {
-        return ""; // TODO: implement this method
+    	StringBuilder sb = new StringBuilder();
+        for (String str : strings) {
+            sb.append(str);
+        }
+        return sb.toString();
     }
 
     /**
@@ -85,7 +155,16 @@ public class CollectionsBasics {
      * @return A list containing the lengths of the strings in the input list.
      */
     public List<Integer> getLengths(List<String> strings) {
-        return null; // TODO: implement this method
+    	if (strings == null) {
+            return new ArrayList<>();
+        }
+
+        List<Integer> lengths = new ArrayList<>();
+        for (String str : strings) {
+            lengths.add(str.length());
+        }
+
+        return lengths;
     }
 
     /**
@@ -103,8 +182,21 @@ public class CollectionsBasics {
      * @return A list containing all the indices where the substring is found at.
      */
     public List<Integer> indicesOf(String text, String substring) {
-        // You can assume that the given substring is not empty.
+    	List<Integer> indices = new ArrayList<>();
 
-        return null; // TODO: implement this method
+        if (text == null || substring == null || substring.isEmpty()) {
+            return indices;
+        }
+
+        int index = text.indexOf(substring);
+
+        while (index != -1) {
+            indices.add(index);
+            // Örtüşen (overlapping) eşleşmeleri kaçırmamak için 
+            // bir sonraki aramayı index + 1 konumundan başlatıyoruz.
+            index = text.indexOf(substring, index + 1);
+        }
+
+        return indices;
     }
 }

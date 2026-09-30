@@ -21,14 +21,17 @@ public class StringBasics {
      * @param text      The input text to be truncated.
      * @param maxLength The maximum length of the text.
      * @return The truncated text.
-     */
-    public String truncate(String text, int maxLength) {
-        // TODO: Fix this method
+     */    public String truncate(String text, int maxLength) {
 
-        if (text.length() > maxLength) {
-            text.substring(0, maxLength);
-        }
-        return text;
+    	 if (text == null || maxLength < 0) {
+             return text;
+         }
+
+         if (text.length() > maxLength) {
+             return text.substring(0, maxLength);
+         }
+
+         return text;
     }
 
     /**
@@ -39,12 +42,7 @@ public class StringBasics {
      * @return `true` if the text is "yes" (case-insensitive), otherwise `false`
      */
     public boolean parseYesOrNo(String text) {
-        // FIXME: this seems to always return false, even when the `text` is "yes"
-
-        if (text.toLowerCase() == "yes") {
-            return true;
-        }
-        return false;
+    	return "yes".equalsIgnoreCase(text);
     }
 
     /**
@@ -61,7 +59,15 @@ public class StringBasics {
      * @return "fizz", "buzz", "fizzbuzz" or the given number as a string.
      */
     public String getFizzBuzz(int number) {
-        return "fizzbuzz"; // TODO: implement this method
+    	if (number % 3 == 0 && number % 5 == 0) {
+            return "fizzbuzz";
+        } else if (number % 3 == 0) {
+            return "fizz";
+        } else if (number % 5 == 0) {
+            return "buzz";
+        } else {
+            return String.valueOf(number);
+        }
     }
 
     /**
@@ -80,7 +86,21 @@ public class StringBasics {
      * @return The text centered in a string of the given width: " Java ".
      */
     public String center(String text, int width) {
-        return null; // TODO: implement this method
+    	if (text == null) {
+            text = "";
+        }
+
+        int totalPadding = width - text.length();
+
+        // If the text is longer than or equal to width, return as is
+        if (totalPadding <= 0) {
+            return text;
+        }
+
+        int leftPadding = totalPadding / 2;
+        int rightPadding = totalPadding - leftPadding;
+
+        return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
     }
 
     /**
@@ -105,9 +125,16 @@ public class StringBasics {
      * @return The text formatted so that each line is centered separately.
      */
     public String centerMultiLine(String text, int lineWidth) {
-        // hint: you can split the text by newlines and use your `center` method to
-        // center each line separately
+    	if (text == null) {
+            return null;
+        }
 
-        return null; // Implement this extra method if you want. It's not required.
+        String[] lines = text.split("\n", -1);
+
+        for (int i = 0; i < lines.length; i++) {
+            lines[i] = center(lines[i], lineWidth);
+        }
+
+        return String.join("\n", lines);
     }
 }

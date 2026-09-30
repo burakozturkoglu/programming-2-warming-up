@@ -1,6 +1,7 @@
 package part03;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,6 +13,28 @@ import java.util.List;
  */
 public class ObjectExercise {
 
+	public static void main(String[] args) {
+        ObjectExercise demo = new ObjectExercise();
+
+        Person rachel = new Person("Rachel", 28);
+        Person monica = new Person("Monica", 27);
+        Person ross = new Person("Ross", 29);
+        Person chandler = new Person("Chandler", 29);
+        Person joey = new Person("Joey", 28);
+        Person phoebe = new Person("Phoebe", 30);
+
+        List<Person> people = Arrays.asList(rachel, monica, ross);
+        System.out.println("Names: " + demo.getNames(people));
+
+        System.out.println("Oldest Person: " + demo.getOldest(people));
+
+        System.out.println("0 Person: '" + demo.generateNamesString(Arrays.asList()) + "'");
+        System.out.println("1 Person: " + demo.generateNamesString(Arrays.asList(rachel)));
+        System.out.println("2 People: " + demo.generateNamesString(Arrays.asList(rachel, monica)));
+        System.out.println("3 People: " + demo.generateNamesString(Arrays.asList(rachel, monica, ross)));
+        System.out.println("6 People: " + demo.generateNamesString(Arrays.asList(rachel, monica, ross, chandler, joey, phoebe)));
+    }
+	
     // NOTE! The Person class needs fixing too. Make sure that the Person class is
     // complete before implementing these methods.
 
@@ -24,10 +47,18 @@ public class ObjectExercise {
      * @return A list of names of the people in the list.
      */
     public List<String> getNames(List<Person> people) {
-        List<String> names = new ArrayList<>();
-        for (Person p : people) {
-            names.add(p.getName());
+    	List<String> names = new ArrayList<>();
+
+        if (people == null) {
+            return names;
         }
+
+        for (Person p : people) {
+            if (p != null) {
+                names.add(p.getName());
+            }
+        }
+
         return names;
     }
 
@@ -42,16 +73,17 @@ public class ObjectExercise {
      * @return The oldest person in the list.
      */
     public Person getOldest(List<Person> people) {
-        if (people.isEmpty()) {
+    	if (people == null || people.isEmpty()) {
             return null;
         }
 
         Person oldest = people.get(0);
         for (Person p : people) {
-            if (p.getAge() > oldest.getAge()) {
+            if (p != null && p.getAge() > oldest.getAge()) {
                 oldest = p;
             }
         }
+
         return oldest;
     }
 
