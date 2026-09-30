@@ -12,6 +12,31 @@ package part01;
  * are free to add new methods.
  */
 public class StringBasics {
+	
+	public static void main(String[] args) {
+        StringBasics demo = new StringBasics();
+
+        // 1. Test truncate
+        System.out.println("Truncate 'Hello' (max 2): " + demo.truncate("Hello", 2)); 
+        System.out.println("Truncate 'Hello' (max 5): " + demo.truncate("Hello", 5)); 
+
+        // 2. Test parseYesOrNo
+        System.out.println("parseYesOrNo('YES'): " + demo.parseYesOrNo("YES")); 
+        System.out.println("parseYesOrNo('no'): " + demo.parseYesOrNo("no"));   
+
+        // 3. Test getFizzBuzz
+        System.out.println("FizzBuzz 3: " + demo.getFizzBuzz(3));  
+        System.out.println("FizzBuzz 5: " + demo.getFizzBuzz(5));   
+        System.out.println("FizzBuzz 15: " + demo.getFizzBuzz(15)); 
+        System.out.println("FizzBuzz 7: " + demo.getFizzBuzz(7));  
+
+        // 4. Test center
+        System.out.println("Center 'Java' (width 8): '" + demo.center("Java", 8) + "'"); 
+        // 5. Test centerMultiLine
+        String multiLineText = "Java\n21";
+        System.out.println("Center MultiLine:");
+        System.out.println(demo.centerMultiLine(multiLineText, 8));
+    }
 
     /**
      * Truncates a text to a given maximum length. If the text is longer than the
